@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HamburgerService } from '../../hamburger.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-page-header',
   templateUrl: './page-header.component.html',
-  styleUrls: ['./page-header.component.css']
+  styles: []
 })
 export class PageHeaderComponent implements OnInit {
-  constructor(private service: HamburgerService){}
+  constructor(private service: HamburgerService, private httpClient: HttpClient){}
   @Input() HamburgerIsActive: boolean = false;
   showfullWidthSearch: boolean = false;
   hamburgerActive: boolean = false;

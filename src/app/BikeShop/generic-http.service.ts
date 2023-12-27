@@ -49,11 +49,12 @@ return this.httpClient;
   }
 
   private sendRequest<T>(method: string, serviceName: string, path: string, data?: any): Observable<any> {
-    var headers = new HttpHeaders().set('Authorization',  `Bearer ${sessionStorage.getItem('token')}`);
+    var headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem('token')}`);
     return this.getServiceUrl(serviceName).pipe(
         switchMap((port: number) =>
           {
-            var url = Constants.getUrlForEntity(port, serviceName.toLowerCase()) + path;
+          var url = Constants.getUrlForEntity(port, serviceName.toLowerCase()) + path;
+          console.log("url", url);
             switch (method) {  
             case 'GET':
               return  this.httpClient.get<ListObjectWrapper<T>>(url, { headers });
@@ -66,9 +67,8 @@ return this.httpClient;
             default:
               throw new Error(`Invalid HTTP method: ${method}`);
           }}
-        ), catchError(error => {return throwError(error);})
+      ), catchError(this.handleError)
       );
-     //return serviceUrl$;
   }
  public get<T>(serviceName: string, path: string): Observable<T> {
     var res = this.sendRequest<T>('GET', serviceName, path);
@@ -116,13 +116,16 @@ return this.httpClient;
 
   // Error handling
   handleError(error: any) {
+    console.error('Full error object: ', error); // Log the entire error object for inspection
     let status: any;
-    error.error instanceof ErrorEvent
-      ? // Get client-side error
-        (status = error.error.message)
-      : // Get server-side error
-        (status = `Error Code: ${error.status}\nMessage: ${error.message}`);
-
-    return throwError(() => error.status);
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      status = error.error.message;
+    } else {
+      // Get server-side error
+      status = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log("error status: ", status);
+    return throwError(() => status);
   }
 } // GenericHttpService

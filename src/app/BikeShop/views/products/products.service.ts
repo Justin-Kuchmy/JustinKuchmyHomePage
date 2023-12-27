@@ -45,7 +45,7 @@ export class ProductsService extends GenericHttpService<products> {
   */
   public getProductNameByID(ProductID: number): Observable<string>
   {
-    var res = this.getHttpClient().get(`http://localhost:8084/api/v1/product/name/` + ProductID, {responseType: 'text'});
+    var res = this.getHttpClient().get(Constants.getBaseUrl()+`8084/api/v1/product/name/` + ProductID, {responseType: 'text'});
     return res;
   }
 }

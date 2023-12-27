@@ -8,12 +8,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatComponentsModule } from './BikeShop/views/mat-components/mat-components.module';
 import { BikeShopModule } from './BikeShop/bikeshop.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MaterialCalculatorModule } from './material-calculator/material-calculator.module';
+import { FoodFinderModule } from './FoodPriceFinder/food-finder.module';
+import { HomePageItemComponent } from './home-page/home-page-item/home-page-item.component';
+import { GenerateHomeComponent } from './SentenceGenerator/generate-home/generate-home.component';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
+    HomePageItemComponent,
+    GenerateHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +27,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     metubeModule,
     BikeShopModule,
     NoopAnimationsModule,
-    MatComponentsModule
+    MatComponentsModule,
+    MaterialCalculatorModule,
+    FoodFinderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

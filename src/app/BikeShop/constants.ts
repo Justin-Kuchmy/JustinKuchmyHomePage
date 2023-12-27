@@ -1,7 +1,11 @@
 export class Constants
 {
-    private static IP = 'localhost';
+    private static IP = '52.5.47.193';
     private static BASEURL = `http://${this.IP}:`;
+
+    //private static LOCAL = 'localhost';
+    //private static BASEURL = `http://${this.LOCAL}:`;
+
     public static CUSTOMER_URL = this.BASEURL +`8081/api/v1/`;
     public static ORDER_URL = this.BASEURL +`8082/api/v1/`;
     public static ORDERITEM_URL = this.BASEURL +`8083/api/v1/`;
